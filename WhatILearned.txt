@@ -1,0 +1,20 @@
+1. adding to an address will multiply the integer value of what you're adding * the size of the type you're adding to
+EX: int * p = (int *) malloc(4)
+p = p + 2
+If p is at address 100, p+2 will translate to 100+(2*4) where 4 is the size of the int
+
+EX: int * p = (char *)p + 1 	| will translate to 100+(2*1) where 1 is the size of char
+
+2. A double pointer is an array of pointers
+
+3. sizeof(freeListHeader) = 24 - the size of all the different data fields in the header
+   sizeof(freeListHeader*) = 8 because it is getting the size of the pointer 
+   
+4. (flHeader *) - points to flheader (flHeader **) - points to flheader pointer
+
+5. A node can be added to the beginning of a linked list refrenced by an array of pointers with the following code:
+	node->next = freeList[index]; //the new node being inserted has it's next point to the first node of the linked list
+	freeList[index] = node; //the first element of the linked list is changed to the new node. The new node's next points to the previous first node
+	
+6. When dynamically allocating a new piece of memory, the argument inside of malloc specifies the number of indicies of the array * the size of each entry
+	freeList = (flHeader **) malloc(numBlocks*sizeof(flHeader *));
